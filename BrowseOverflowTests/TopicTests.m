@@ -19,10 +19,12 @@
 - (void)tearDown {
 }
 
+//Hao: very basic, in your implementation of the (instanceType initWith..), after your init, the object should not be nil
 - (void)testThatTopicExists {
     XCTAssertNotNil(topic, @"should be able to create a Topic instance");
 }
 
+//Hao: nice, this reminds me if I call (initWithName:nil tag:nil), then in the implementation I should have something prevent a name nil.
 - (void)testThatTopicCanBeNamed {
     XCTAssertEqualObjects(topic.name, @"iPhone", @"the Topic should have the name I gave it");
 }
@@ -39,6 +41,7 @@
     XCTAssertEqual([[topic recentQuestions] count], (NSUInteger)0, @"No questions added yet, count should be zero");
 }
 
+//HAO: this tells you that in the implementation, the NSArray: recentQuestion should be init (array ... ), otherwise when it is nil and you add an object, it stucks
 - (void)testAddingAQuestionToTheList {
     Question *question = [[Question alloc] init];
     [topic addQuestion: question];
@@ -62,6 +65,7 @@
     XCTAssertEqualObjects([listedFirst.date laterDate: listedSecond.date], listedFirst.date, @"The later question should appear first in the list");
 }
 
+//Hao: interesting, if I define a topic has no more than 20 questions, in my test I manually add more than 20 questions in the array, then in the implementation I will have to know a case to be checked when question more than 20, what should I do: maybe dequeue the previous one, maybe clear all at this point...
 - (void)testLimitOfTwentyQuestions {
     Question *q1 = [[Question alloc] init];
     for (NSInteger i = 0; i < 25; i++) {

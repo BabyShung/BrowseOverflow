@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "98A548EE130D3ABF003C4F0F"
-               BuildableName = "BrowseOverflowTests.octest"
+               BuildableName = "BrowseOverflowTests.xctest"
                BlueprintName = "BrowseOverflowTests"
                ReferencedContainer = "container:BrowseOverflow.xcodeproj">
             </BuildableReference>
