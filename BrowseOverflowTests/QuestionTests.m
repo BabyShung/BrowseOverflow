@@ -55,6 +55,7 @@
     XCTAssertEqual(question.score, 42, @"Questions need a numeric score");
 }
 
+//Hao: This is helpful in an abstract perspective. Let's say you init an alert view with nil parameters, you then call [show] and don't want it to crash.
 - (void)testQuestionCanHaveAnswersAdded {
     Answer *myAnswer = [[Answer alloc] init];
     XCTAssertNoThrow([question addAnswer: myAnswer], @"Must be able to add answers");

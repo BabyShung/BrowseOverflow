@@ -16,10 +16,16 @@
 
 - (void)setUp {
     communicator = [[InspectableStackOverflowCommunicator alloc] init];
+    
     nnCommunicator = [[NonNetworkedStackOverflowCommunicator alloc] init];
+    
+    //mock manager
     manager = [[MockStackOverflowManager alloc] init];
+    
     nnCommunicator.delegate = manager;
+    
     fourOhFourResponse = [[FakeURLResponse alloc] initWithStatusCode: 404];
+    
     receivedData = [@"Result" dataUsingEncoding: NSUTF8StringEncoding];
 }
 
@@ -54,10 +60,20 @@
     XCTAssertFalse([[communicator currentURLConnection] isEqual: firstConnection], @"The communicator needs to replace its URL connection to start a new one");
 }
 
+//----------------------------------
+//---------non network ---------------
+//----------------------------------
+
+//Hao: nnCommnication is a subclass of StackOverflowCommunicator,
+// its job is to test the logic without going through the network, AMAZING!
+//and also override this launch network connection method to make it empty so that it can fake a network failed
 - (void)testReceivingResponseDiscardsExistingData {
     nnCommunicator.receivedData = [@"Hello" dataUsingEncoding: NSUTF8StringEncoding];
     [nnCommunicator searchForQuestionsWithTag: @"ios"];
+    
+    //mock receiving empty response
     [nnCommunicator connection: nil didReceiveResponse: nil];
+    
     XCTAssertEqual([nnCommunicator.receivedData length], (NSUInteger)0, @"Data should have been discarded");
 }
 

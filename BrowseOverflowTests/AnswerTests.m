@@ -10,6 +10,9 @@
 #import "Answer.h"
 #import "Person.h"
 
+//HAO: I don't think this class of tests is useful.. not creating any constraint..
+
+
 @implementation AnswerTests
 
 - (void)setUp {
@@ -17,11 +20,13 @@
     answer.text = @"The answer is 42";
     answer.person = [[Person alloc] initWithName: @"Graham Lee" avatarLocation: @"http://example.com/avatar.png"];
     answer.score = 42;
+    
     otherAnswer = [[Answer alloc] init];
     otherAnswer.text = @"I have the answer you need";
     otherAnswer.score = 42;
 }
 
+//Hao:This test is useless... since it doesn't have any constraint on [[Answer alloc]init]
 - (void)testAnswerHasSomeText {
     XCTAssertEqualObjects(answer.text, @"The answer is 42", @"Answers need to contain some text");
 }

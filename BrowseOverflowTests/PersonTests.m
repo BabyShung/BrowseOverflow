@@ -20,6 +20,7 @@
     XCTAssertEqualObjects(person.name, @"Graham Lee", @"expecting a person to provide its name");
 }
 
+//Hao: this test set constraints on the constructor, making its implementation has to assign avartarLocation:xx to person.avatarURL. But it doesn't check the nil case. Still it is useful if you want to specify a parameter assign to a specific property.
 - (void)testThatPersonHasAnAvatarURL {
     NSURL *url = person.avatarURL;
     XCTAssertEqualObjects([url absoluteString], @"http://example.com/avatar.png", @"The Person's avatar should be represented by a URL");

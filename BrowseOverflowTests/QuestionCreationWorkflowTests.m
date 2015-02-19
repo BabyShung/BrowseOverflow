@@ -30,11 +30,16 @@
 - (void)setUp {
     mgr = [[StackOverflowManager alloc] init];
     delegate = [[MockStackOverflowManagerDelegate alloc] init];
+    
     mgr.delegate = delegate;
+    
     underlyingError = [NSError errorWithDomain: @"Test domain" code: 0 userInfo: nil];
+    
     questionBuilder = [[FakeQuestionBuilder alloc] init];
     questionBuilder.arrayToReturn = nil;
+    
     mgr.questionBuilder = questionBuilder;
+    
     questionToFetch = [[Question alloc] init];
     questionToFetch.questionID = 1234;
     questionArray = [NSArray arrayWithObject: questionToFetch];

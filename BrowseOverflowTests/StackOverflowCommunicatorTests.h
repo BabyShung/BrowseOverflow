@@ -18,8 +18,11 @@
 @interface StackOverflowCommunicatorTests : XCTestCase {
     InspectableStackOverflowCommunicator *communicator;
     NonNetworkedStackOverflowCommunicator *nnCommunicator;
+    
     MockStackOverflowManager *manager;
+    
     FakeURLResponse *fourOhFourResponse;
+    
     NSData *receivedData;
 }
 
